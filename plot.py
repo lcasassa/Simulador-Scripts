@@ -19,19 +19,21 @@ def load_data(file):
     #pp(data[0])
     return data
 
-def plot(files):
+def plot(files, output_image = 'image.png', show = False):
 
     fig, ax = plt.subplots()
 
     for f in files:
         data = load_data(f)
+        f = f.split('.')[0].split('_')[1]
         ax.plot(range(0, len(data[0])), data[0], '.', label=f)
-        ax.plot(range(0, len(data[1])), data[1], '', label=f)
+        ax.plot(range(0, len(data[1])), data[1], '')
 
-    legend = ax.legend(loc='lower right', shadow=True)
+    legend = ax.legend(loc='upper left', shadow=True)
 
-    plt.savefig('image.png')
-    plt.show()
+    plt.savefig(output_image)
+    if show:
+        plt.show()
 
 if __name__ == "__main__":
     import sys

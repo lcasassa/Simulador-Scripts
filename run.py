@@ -9,11 +9,12 @@ jobs = sys.argv[1:]
 maxSimultaneo = 4
 
 procs = []
-plotFiles = []
+outputFiles = []
 
 for j in jobs:
+    density = 1
     #for algorithm in ['pso', 'sh', 'sa', 'ga']:
-    for algorithm in ['ga']:
+    for algorithm in ['pso']:
 
         while len(procs) >= maxSimultaneo:
             for p in procs:
@@ -21,9 +22,9 @@ for j in jobs:
                     procs.remove(p)
             time.sleep(0.5)
 
-        plotFile = "data_" + algorithm + "_" + str(j) + ".txt"
-        plotFiles.append(plotFile)
-        job = ("./Simulador " + plotFile + " " + algorithm + " " + str(j)).split(' ')
+        outputFile = "data_" + algorithm + "_" + str(j)
+        outputFiles.append(outputFile)
+        job = ("./Simulador " + outputFile + " " + algorithm + " " + str(j) + " " + str(density)).split(' ')
         print "Running: " + " ".join(job)
         proc = subprocess.Popen(job, shell=False)
         procs.append(proc)
@@ -40,8 +41,20 @@ while len(procs) > 0:
             procs.remove(p)
     time.sleep(0.5)
 
+plotFiles = []
+fuzzyFiles = []
+fuzzyImageFiles = []
+
+for f in outputFiles:
+    plotFiles.append(f + ".txt")
+    fuzzyFiles.append(f + "_fuzzy.txt")
+    fuzzyImageFiles.append(f + "_fuzzy.png")
 
 import plot
-plot.plot(plotFiles)
+plot.plot(plotFiles, "summary_plot.png")
+
+import plotFuzzy
+for i in xrange(len(fuzzyFiles)):
+    plotFuzzy.plotFuzzy(fuzzyFiles[i], fuzzyImageFiles[i])
 
 print "Done!"
