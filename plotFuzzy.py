@@ -30,11 +30,25 @@ def plotFuzzy(fn, fi, show = False):
     segy6 = [0,    1,    0,    0]
 
     plt.clf()
-    plt.figure().suptitle('Algoritmo ' + title, fontsize=20)
+    plt.figure().suptitle(title + ' algorithm', fontsize=20)
     plt.subplot(2, 1, 1)
     plt.plot(segx, segy, segx2, segy2, segx3, segy3)
+
+    plt.xlim(0, 1)
+    plt.ylim(0, 1)
+
+    plt.xlabel("Normalized distance")
+    #plt.ylabel("")
+
     plt.subplot(2, 1, 2)
     plt.plot(segx4, segy4, segx5, segy5, segx6, segy6)
+
+    plt.xlim(-1, 1)
+    plt.ylim(0, 1)
+
+    plt.xlabel("Normalized veloity")
+    #plt.ylabel("")
+
 
     if show:
         plt.show()

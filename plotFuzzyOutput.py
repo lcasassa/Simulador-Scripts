@@ -24,7 +24,7 @@ def plotFuzzyOutput(fn, fi, show = False):
     zi = ml.griddata(x, y, z, xi, yi)
 
     plt.clf()
-    plt.title('Algoritmo ' + title)
+    plt.title(title + ' algorithm')
     #plt.figure().suptitle('Algoritmo ' + title, fontsize=20)
     #plt.contour(xi, yi, zi, 15, linewidths = 0.5, colors = 'k')
     plt.pcolormesh(xi, yi, zi, cmap = plt.get_cmap('rainbow'), vmin=zmin, vmax=zmax)
@@ -34,8 +34,8 @@ def plotFuzzyOutput(fn, fi, show = False):
     plt.xlim(xmin, xmax)
     plt.ylim(ymin, ymax)
 
-    plt.xlabel("Velocidad")
-    plt.ylabel("Distancia")
+    plt.xlabel("Normalized veloity")
+    plt.ylabel("Normalized distance")
 
     if show:
         plt.show()

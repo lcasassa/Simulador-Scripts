@@ -6,8 +6,8 @@ import matplotlib.mlab as ml
 import os
 
 def pid(dist, vel):
-    p = 0.0509804
-    d = 0.8700588
+    p = 0.00110204
+    d = 1
     return p*dist*10+d*vel*100
 
 
@@ -28,7 +28,7 @@ def plotPidOutput(fi = None):
     zi = ml.griddata(x, y, z, xi, yi)
 
     plt.clf()
-    plt.title('Algoritmo ' + title)
+    plt.title('Algorithm ' + title)
     #plt.figure().suptitle('Algoritmo ' + title, fontsize=20)
     #plt.contour(xi, yi, zi, 15, linewidths = 0.5, colors = 'k')
     plt.pcolormesh(xi, yi, zi, cmap = plt.get_cmap('rainbow'), vmin=zmin, vmax=zmax)
@@ -38,8 +38,8 @@ def plotPidOutput(fi = None):
     plt.xlim(xmin, xmax)
     plt.ylim(ymin, ymax)
 
-    plt.xlabel("Velocidad")
-    plt.ylabel("Distancia")
+    plt.xlabel("Velocity normalized")
+    plt.ylabel("Distance normalized")
 
     if fi is None:
         plt.show()
